@@ -53,7 +53,6 @@
     <section class="view active" id="ifrView"><div class="page-content"><div class="workspace"><article class="panel input-panel"><div class="panel-header"><div><b>IFR</b><h2>Clearance information</h2></div><span class="live"><i></i> Live input</span></div>
       <div class="form-grid">
         <label class="field"><span>Callsign <em>Required</em></span><input id="callsign" data-field="callsign" value="A24 123" autocomplete="off"></label>
-        <label class="field"><span>Gate</span><input id="gate" data-field="gate" value="A12" autocomplete="off"></label>
         <label class="field"><span>Destination airport</span><input id="destination" data-field="destination" value="RJAA" autocomplete="off"></label><label class="field"><span>ATIS information</span><input id="information" data-field="information" value="J" maxlength="1" autocomplete="off"><small id="informationPreview">Juliett</small></label>
         <label class="field wide"><span>Flight route</span><textarea id="route" data-field="route" rows="2">DCT MOLBA UN545 ALPOE</textarea></label>
         <label class="field"><span>Departure runway</span><input id="runway" data-field="runway" value="06" autocomplete="off"></label><label class="field"><span>Initial altitude</span><input id="altitude" data-field="altitude" value="FL360" autocomplete="off"></label>
@@ -95,6 +94,6 @@
 
   </main>
   <div class="toast" id="toast" role="status" aria-live="polite"><i>✓</i><span id="toastText"></span></div>
-  <script src="app.js"></script>
+  <script src="app.js?v=ifr-altitudes"></script>
 </body>
 </html>

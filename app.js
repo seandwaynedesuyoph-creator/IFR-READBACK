@@ -121,7 +121,9 @@
     if (/^[0-7]{4}$/.test(d.squawk)) output.push(`squawk ${d.squawk}`);
     const infoLetter = d.information.toUpperCase().charAt(0);
     if (ICAO[infoLetter]) output.push(`information ${ICAO[infoLetter]}`);
-    const cruiseInstruction = delayedClimb(d.cruiseDelay,d.cruisingAltitude);
+    const cruiseInstruction = d.cruiseDelay
+      ? delayedClimb(d.cruiseDelay,d.cruisingAltitude)
+      : d.cruisingAltitude ? `Cruising altitude ${d.cruisingAltitude}.` : "";
     return [output.length ? `${output.join(", ")}.` : "",cruiseInstruction].filter(Boolean).join(" ");
   }
   function generateVfr(d) {
@@ -363,7 +365,7 @@
     const activeView = document.querySelector(".view.active");
     if (!activeView) return;
     if (activeView.id === "ifrView") {
-      clearFields(["callsign","gate","destination","information","route","runway","altitude","cruiseDelay","cruisingAltitude","frequency","squawk","additional"]);
+      clearFields(["callsign","destination","information","route","runway","altitude","cruiseDelay","cruisingAltitude","frequency","squawk","additional"]);
       $("callsign").focus();
     } else {
       const mode = activeView.id.replace("View","");
@@ -438,7 +440,7 @@
   document.querySelectorAll(".clear-mode").forEach((button) => button.addEventListener("click",() => {
     const mode = button.dataset.mode;
     if (mode === "ifr") {
-      clearFields(["callsign","gate","destination","information","route","runway","altitude","cruiseDelay","cruisingAltitude","frequency","squawk","additional"]);
+      clearFields(["callsign","destination","information","route","runway","altitude","cruiseDelay","cruisingAltitude","frequency","squawk","additional"]);
     } else {
       clearFields(FIELD_IDS.filter((id) => id.startsWith(mode)));
     }
