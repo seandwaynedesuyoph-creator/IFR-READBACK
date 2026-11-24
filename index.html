@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#000000">
+  <title>Aviation24 — Operations</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="main">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">A24</div>
+        <div class="brand-copy"><strong>Aviation24</strong><span>Flight operations</span></div>
+      </div>
+      <div class="title"><span id="viewEyebrow">FLIGHT OPERATIONS</span><h1 id="viewTitle">IFR</h1></div>
+      <div class="top-actions">
+        <span class="system-status"><i></i> SYSTEM READY</span>
+        <time id="utcClock">--:-- UTC</time>
+      </div>
+    </header>
+    <nav class="tabbar" aria-label="Application navigation">
+      <div class="sidebar-brand">
+        <div class="brand-mark">A24</div>
+        <div class="brand-copy"><strong>Aviation24</strong><span>Flight operations</span></div>
+      </div>
+      <span class="sidebar-label">WORKSPACE</span>
+      <button class="nav-item" type="button" data-view="vfr">VFR</button>
+      <button class="nav-item active" type="button" data-view="ifr">IFR</button>
+      <button class="nav-item" type="button" data-view="taxi">TAXI</button>
+      <button class="nav-item" type="button" data-view="dep">DEP</button>
+      <button class="nav-item" type="button" data-view="app">APP</button>
+      <button class="nav-item" type="button" data-view="land">LAND</button>
+      <button class="nav-item" type="button" data-view="park">PARK</button>
+      <button class="nav-item" type="button" data-view="notes">NOTES</button>
+      <div class="sidebar-footer"><i></i><span>FLIGHT DECK <b>·</b> A24</span></div>
+    </nav>
+
+    <section class="view" id="vfrView"><div class="page-content"><div class="workspace"><article class="panel"><div class="panel-header"><div><b>VFR</b><h2>Flight information</h2></div><span class="live"><i></i> Live input</span></div><div class="form-grid">
+      <label class="field"><span>Callsign</span><input id="vfrCallsign" data-field="vfrCallsign" placeholder="e.g. N123AB"></label><label class="field"><span>Aircraft type</span><input id="vfrAircraft" data-field="vfrAircraft" placeholder="e.g. C172"></label>
+      <label class="field"><span>Departure airport</span><input id="vfrDeparture" data-field="vfrDeparture" placeholder="ICAO"></label><label class="field"><span>Destination</span><input id="vfrDestination" data-field="vfrDestination" placeholder="ICAO"></label>
+      <label class="field"><span>Runway</span><input id="vfrRunway" data-field="vfrRunway" placeholder="Runway"></label><label class="field"><span>Altitude</span><input id="vfrAltitude" data-field="vfrAltitude" placeholder="Altitude"></label>
+      <label class="field"><span>Climb to cruising altitude after (minutes)</span><input id="vfrCruiseDelay" data-field="vfrCruiseDelay" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="Optional"></label><label class="field"><span>Cruising altitude</span><input id="vfrCruisingAltitude" data-field="vfrCruisingAltitude" placeholder="e.g. FL350 or 120"></label>
+      <label class="field wide"><span>Route / intentions</span><textarea id="vfrRoute" data-field="vfrRoute" rows="2" placeholder="Route or flight intentions"></textarea></label>
+      <label class="field wide"><span>Additional information</span><textarea id="vfrAdditional" data-field="vfrAdditional" rows="2" placeholder="Additional information"></textarea></label>
+    </div></article><div class="readback-column"><section class="validation-panel" id="vfrValidation" aria-live="polite" aria-atomic="true" tabindex="-1"></section><div class="readback-actions"><button class="button clear-mode" data-mode="vfr" type="button">CLEAR SESSION</button><button class="button primary generate-button" data-generate="vfr" aria-controls="vfrReadbackPanel" type="button">GENERATE READBACK</button></div><article class="panel result-panel" id="vfrReadbackPanel" tabindex="-1"><div class="panel-header"><div><b>READBACK</b><h2>VFR communication</h2></div></div><div class="readback"><div class="readback-meta"><span>VFR</span><time class="view-time"></time></div><p id="vfrOutput"></p></div></article></div></div></div></section>
+
+    <section class="view active" id="ifrView"><div class="page-content"><div class="workspace"><article class="panel input-panel"><div class="panel-header"><div><b>IFR</b><h2>Clearance information</h2></div><span class="live"><i></i> Live input</span></div>
+      <div class="form-grid">
+        <label class="field"><span>Callsign <em>Required</em></span><input id="callsign" data-field="callsign" value="A24 123" autocomplete="off"></label><label class="field"><span>Aircraft type</span><input id="aircraft" data-field="aircraft" value="A320" autocomplete="off"></label>
+        <label class="field"><span>Gate</span><input id="gate" data-field="gate" value="A12" autocomplete="off"></label>
+        <label class="field"><span>Destination airport</span><input id="destination" data-field="destination" value="RJAA" autocomplete="off"></label><label class="field"><span>ATIS information</span><input id="information" data-field="information" value="J" maxlength="1" autocomplete="off"><small id="informationPreview">Juliett</small></label>
+        <label class="field wide"><span>Flight route</span><textarea id="route" data-field="route" rows="2">DCT MOLBA UN545 ALPOE</textarea></label>
+        <label class="field"><span>Departure runway</span><input id="runway" data-field="runway" value="06" autocomplete="off"></label><label class="field"><span>Initial altitude</span><input id="altitude" data-field="altitude" value="FL360" autocomplete="off"></label>
+        <label class="field"><span>Climb to cruising altitude after (minutes)</span><input id="cruiseDelay" data-field="cruiseDelay" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="Optional"></label><label class="field"><span>Cruising altitude</span><input id="cruisingAltitude" data-field="cruisingAltitude" placeholder="e.g. FL350 or 120" autocomplete="off"></label>
+        <label class="field"><span>Departure frequency</span><input id="frequency" data-field="frequency" value="118.7" inputmode="decimal"></label><label class="field"><span>Squawk</span><input id="squawk" data-field="squawk" value="7622" maxlength="4" inputmode="numeric"></label>
+        <label class="field wide"><span>Additional flight information</span><textarea id="additional" data-field="additional" rows="2">We have information Juliett on board.</textarea></label>
+      </div></article><div class="readback-column"><section class="validation-panel" id="ifrValidation" aria-live="polite" aria-atomic="true" tabindex="-1"></section><div class="readback-actions"><button class="clear-button" id="clearSessionButton" type="button">Clear session</button><button class="button primary generate-button" data-generate="ifr" aria-controls="ifrReadbackPanel" type="button">GENERATE READBACK</button></div><article class="panel output-panel" id="ifrReadbackPanel" tabindex="-1"><div class="panel-header"><div><b>READBACK</b><h2>IFR clearance</h2></div></div><div class="readback"><div class="readback-meta"><span>IFR READBACK</span><time id="readbackTime">0000Z</time></div><p id="readbackOutput"></p></div></article></div></div></div></section>
+
+    <section class="view" id="taxiView"><div class="page-content"><div class="workspace"><article class="panel"><div class="panel-header"><div><b>TAXI</b><h2>Ground instructions</h2></div></div><div class="form-grid">
+      <label class="field"><span>Callsign</span><input id="taxiCallsign" data-field="taxiCallsign" placeholder="Callsign"></label><label class="field"><span>Airport</span><input id="taxiAirport" data-field="taxiAirport" placeholder="ICAO"></label>
+      <label class="field wide"><span>Taxi route</span><textarea id="taxiRoute" data-field="taxiRoute" rows="2" placeholder="Taxi route as assigned"></textarea></label><label class="field"><span>Holding point</span><input id="taxiHold" data-field="taxiHold" placeholder="Holding point"></label><label class="field"><span>Hold short of</span><input id="taxiShort" data-field="taxiShort" placeholder="Runway / instruction"></label>
+      <label class="field wide"><span>Runway crossing instructions</span><textarea id="taxiCrossing" data-field="taxiCrossing" rows="2" placeholder="Crossing instructions, if assigned"></textarea></label><label class="field wide"><span>Directional / other instructions</span><textarea id="taxiOther" data-field="taxiOther" rows="2" placeholder="Direction and other assigned instructions"></textarea></label>
+    </div></article><div class="readback-column"><section class="validation-panel" id="taxiValidation" aria-live="polite" aria-atomic="true" tabindex="-1"></section><div class="readback-actions"><button class="button clear-mode" data-mode="taxi" type="button">CLEAR SESSION</button><button class="button primary generate-button" data-generate="taxi" aria-controls="taxiReadbackPanel" type="button">GENERATE READBACK</button></div><article class="panel result-panel" id="taxiReadbackPanel" tabindex="-1"><div class="panel-header"><div><b>READBACK</b><h2>Taxi instructions</h2></div></div><div class="readback"><div class="readback-meta"><span>TAXI</span><time class="view-time"></time></div><p id="taxiOutput"></p></div></article></div></div></div></section>
+
+    <section class="view" id="depView"><div class="page-content"><div class="workspace"><article class="panel"><div class="panel-header"><div><b>DEP</b><h2>Departure instructions</h2></div></div><div class="form-grid">
+      <label class="field"><span>Callsign</span><input id="depCallsign" data-field="depCallsign" placeholder="Callsign"></label><label class="field"><span>Assigned runway</span><input id="depRunway" data-field="depRunway" placeholder="Runway"></label>
+      <label class="field"><span>Departure frequency</span><input id="depFrequency" data-field="depFrequency" placeholder="Frequency"></label><label class="field"><span>Altitude</span><input id="depAltitude" data-field="depAltitude" placeholder="Altitude"></label>
+      <label class="field wide"><span>Departure instructions</span><textarea id="depInstructions" data-field="depInstructions" rows="3" placeholder="Assigned departure instructions"></textarea></label>
+    </div></article><div class="readback-column"><section class="validation-panel" id="depValidation" aria-live="polite" aria-atomic="true" tabindex="-1"></section><div class="readback-actions"><button class="button clear-mode" data-mode="dep" type="button">CLEAR SESSION</button><button class="button primary generate-button" data-generate="dep" aria-controls="depReadbackPanel" type="button">GENERATE READBACK</button></div><article class="panel result-panel" id="depReadbackPanel" tabindex="-1"><div class="panel-header"><div><b>READBACK</b><h2>Departure</h2></div></div><div class="readback"><div class="readback-meta"><span>DEP</span><time class="view-time"></time></div><p id="depOutput"></p></div></article></div></div></div></section>
+
+    <section class="view" id="appView"><div class="page-content"><div class="workspace"><article class="panel"><div class="panel-header"><div><b>APP</b><h2>Approach instructions</h2></div></div><div class="form-grid">
+      <label class="field"><span>Callsign</span><input id="appCallsign" data-field="appCallsign" placeholder="Callsign"></label><label class="field"><span>Approach type</span><input id="appType" data-field="appType" placeholder="e.g. ILS, RNAV"></label>
+      <label class="field"><span>Approach runway</span><input id="appRunway" data-field="appRunway" placeholder="Runway"></label><label class="field"><span>Approach altitude</span><input id="appAltitude" data-field="appAltitude" placeholder="Altitude"></label>
+      <label class="field wide"><span>Additional approach instructions</span><textarea id="appInstructions" data-field="appInstructions" rows="3" placeholder="Assigned approach instructions"></textarea></label>
+    </div></article><div class="readback-column"><section class="validation-panel" id="appValidation" aria-live="polite" aria-atomic="true" tabindex="-1"></section><div class="readback-actions"><button class="button clear-mode" data-mode="app" type="button">CLEAR SESSION</button><button class="button primary generate-button" data-generate="app" aria-controls="appReadbackPanel" type="button">GENERATE READBACK</button></div><article class="panel result-panel" id="appReadbackPanel" tabindex="-1"><div class="panel-header"><div><b>READBACK</b><h2>Approach</h2></div></div><div class="readback"><div class="readback-meta"><span>APP</span><time class="view-time"></time></div><p id="appOutput"></p></div></article></div></div></div></section>
+
+    <section class="view" id="landView"><div class="page-content"><div class="workspace"><article class="panel"><div class="panel-header"><div><b>LAND</b><h2>Landing instructions</h2></div></div><div class="form-grid">
+      <label class="field"><span>Callsign</span><input id="landCallsign" data-field="landCallsign" placeholder="Callsign"></label><label class="field"><span>Landing runway</span><input id="landRunway" data-field="landRunway" placeholder="Runway"></label>
+      <label class="field"><span>Landing wind</span><input id="landWind" data-field="landWind" placeholder="As issued"></label><label class="field"><span>Landing instructions</span><input id="landInstructions" data-field="landInstructions" placeholder="As assigned"></label>
+    </div></article><div class="readback-column"><section class="validation-panel" id="landValidation" aria-live="polite" aria-atomic="true" tabindex="-1"></section><div class="readback-actions"><button class="button clear-mode" data-mode="land" type="button">CLEAR SESSION</button><button class="button primary generate-button" data-generate="land" aria-controls="landReadbackPanel" type="button">GENERATE READBACK</button></div><article class="panel result-panel" id="landReadbackPanel" tabindex="-1"><div class="panel-header"><div><b>READBACK</b><h2>Landing</h2></div></div><div class="readback"><div class="readback-meta"><span>LAND</span><time class="view-time"></time></div><p id="landOutput"></p></div></article></div></div></div></section>
+
+    <section class="view" id="parkView"><div class="page-content"><div class="workspace"><article class="panel"><div class="panel-header"><div><b>PARK</b><h2>Parking instructions</h2></div></div><div class="form-grid">
+      <label class="field"><span>Callsign</span><input id="parkCallsign" data-field="parkCallsign" placeholder="Callsign"></label><label class="field"><span>Parking location</span><input id="parkLocation" data-field="parkLocation" placeholder="Stand / gate"></label>
+      <label class="field"><span>Ground frequency</span><input id="parkFrequency" data-field="parkFrequency" placeholder="Frequency"></label><label class="field"><span>Airport</span><input id="parkAirport" data-field="parkAirport" placeholder="ICAO"></label>
+      <label class="field wide"><span>Parking instructions</span><textarea id="parkInstructions" data-field="parkInstructions" rows="2" placeholder="As assigned"></textarea></label>
+    </div></article><div class="readback-column"><section class="validation-panel" id="parkValidation" aria-live="polite" aria-atomic="true" tabindex="-1"></section><div class="readback-actions"><button class="button clear-mode" data-mode="park" type="button">CLEAR SESSION</button><button class="button primary generate-button" data-generate="park" aria-controls="parkReadbackPanel" type="button">GENERATE READBACK</button></div><article class="panel result-panel" id="parkReadbackPanel" tabindex="-1"><div class="panel-header"><div><b>READBACK</b><h2>Parking</h2></div></div><div class="readback"><div class="readback-meta"><span>PARK</span><time class="view-time"></time></div><p id="parkOutput"></p></div></article></div></div></div></section>
+
+    <section class="view" id="notesView"><div class="page-content"><article class="panel content-panel"><div class="panel-header"><div><b>NOTES</b><h2>Personal notes</h2></div><button class="button primary" id="newNoteButton" type="button">New note</button></div><div class="notes-layout"><div class="notes-list" id="notesList"></div><form class="note-editor" id="noteForm"><label class="field"><span>Title</span><input id="noteTitle" maxlength="100" placeholder="Note title"></label><label class="field"><span>Note</span><textarea id="noteBody" rows="9" placeholder="Write a personal note"></textarea></label><div class="note-actions"><button class="button primary" type="submit">Save note</button><button class="button danger-button" id="deleteNoteButton" type="button" disabled>Delete</button></div></form></div></article></div></section>
+
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"><i>✓</i><span id="toastText"></span></div>
+  <script src="app.js"></script>
+</body>
+</html>
