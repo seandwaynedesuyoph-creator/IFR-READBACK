@@ -131,6 +131,7 @@
     if (d.vfrAltitude) output.push(`altitude ${d.vfrAltitude}.`);
     const cruiseInstruction = delayedClimb(d.vfrCruiseDelay,d.vfrCruisingAltitude);
     if (cruiseInstruction) output.push(cruiseInstruction);
+    if (/^[0-7]{4}$/.test(d.vfrSquawk)) output.push(`squawk ${d.vfrSquawk}.`);
     if (d.vfrAdditional) output.push(`${d.vfrAdditional}.`);
     return output.join(" ");
   }
@@ -220,8 +221,9 @@
         addError(field,"Enter a frequency from 118.000 to 136.975 with up to three decimal places.");
       }
     });
-    if (mode === "ifr" && clean(data.squawk) && !/^[0-7]{4}$/.test(data.squawk)) {
-      addError("squawk","Squawk must contain exactly four digits from 0 to 7.");
+    const squawkField = mode === "vfr" ? "vfrSquawk" : mode === "ifr" ? "squawk" : null;
+    if (squawkField && clean(data[squawkField]) && !/^[0-7]{4}$/.test(data[squawkField])) {
+      addError(squawkField,"Squawk must contain exactly four digits from 0 to 7.");
     }
     if (mode === "taxi" && !clean(data.taxiRoute) && !clean(data.taxiOther)) {
       addError("taxiRoute","Enter a taxi route or other assigned taxi instruction.");
