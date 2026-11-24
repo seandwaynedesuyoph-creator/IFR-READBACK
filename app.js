@@ -39,7 +39,6 @@
   if (!state.frequencies || typeof state.frequencies !== "object" || Array.isArray(state.frequencies)) state.frequencies = {};
   const SHARED_FIELDS = [
     ["callsign","vfrCallsign","taxiCallsign","depCallsign","appCallsign","landCallsign","parkCallsign"],
-    ["aircraft","vfrAircraft"],
     ["destination","vfrDestination"]
   ];
   const clean = (value) => String(value || "").trim().replace(/\s+/g," ");
@@ -126,7 +125,6 @@
   function generateVfr(d) {
     const output = [];
     if (d.vfrCallsign) output.push(`${d.vfrCallsign},`);
-    if (d.vfrAircraft) output.push(`aircraft ${d.vfrAircraft}.`);
     if (d.vfrDestination) output.push(`destination ${d.vfrDestination}.`);
     if (d.vfrRoute) output.push(`route / intentions ${d.vfrRoute}.`);
     if (d.vfrRunway) output.push(`runway ${speakRunway(d.vfrRunway)}.`);
@@ -361,7 +359,7 @@
     const activeView = document.querySelector(".view.active");
     if (!activeView) return;
     if (activeView.id === "ifrView") {
-      clearFields(["callsign","aircraft","gate","destination","information","route","runway","altitude","cruiseDelay","cruisingAltitude","frequency","squawk","additional"]);
+      clearFields(["callsign","gate","destination","information","route","runway","altitude","cruiseDelay","cruisingAltitude","frequency","squawk","additional"]);
       $("callsign").focus();
     } else {
       const mode = activeView.id.replace("View","");
@@ -436,7 +434,7 @@
   document.querySelectorAll(".clear-mode").forEach((button) => button.addEventListener("click",() => {
     const mode = button.dataset.mode;
     if (mode === "ifr") {
-      clearFields(["callsign","aircraft","gate","destination","information","route","runway","altitude","cruiseDelay","cruisingAltitude","frequency","squawk","additional"]);
+      clearFields(["callsign","gate","destination","information","route","runway","altitude","cruiseDelay","cruisingAltitude","frequency","squawk","additional"]);
     } else {
       clearFields(FIELD_IDS.filter((id) => id.startsWith(mode)));
     }
