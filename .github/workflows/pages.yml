@@ -39,6 +39,7 @@ jobs:
                 run_id: context.runId,
               });
               if (data.artifacts.some((artifact) => artifact.name === "github-pages" && !artifact.expired)) {
+                await new Promise((resolve) => setTimeout(resolve, 5000));
                 return;
               }
               await new Promise((resolve) => setTimeout(resolve, 1000));
