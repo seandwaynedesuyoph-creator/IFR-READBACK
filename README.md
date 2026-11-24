@@ -18,5 +18,6 @@ starting the server, for example `PORT=8080 python3 dev_server.py`.
 ## GitHub Pages
 
 GitHub Pages is enabled for this repository. The workflow deploys this static
-site on pushes to `main`. The project URL is
+site on pushes to `main`; edits in a local checkout appear on the public site
+only after they are committed and pushed. The project URL is
 <https://seandwaynedesuyoph-creator.github.io/IFR-READBACK/>.
