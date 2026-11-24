@@ -17,7 +17,6 @@ before starting the server.
 
 ## GitHub Pages
 
-Before the first deployment, select **Settings → Pages → Build and deployment
-→ GitHub Actions** in the repository. After Pages is enabled, the workflow
-deploys this static site on pushes to `main`. The default project URL is
+GitHub Pages is enabled for this repository. The workflow deploys this static
+site on pushes to `main`. The project URL is
 <https://seandwaynedesuyoph-creator.github.io/IFR-READBACK/>.
