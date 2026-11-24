@@ -1,0 +1,7 @@
+# This repository currently contains no application code (only README.md),
+# so there is no framework, package manager, or build step yet.
+# The site is deployed as static files straight from the repository root.
+# Once an app is added, set `command` and `publish` to match its build.
+[build]
+  command = ""
+  publish = "."
