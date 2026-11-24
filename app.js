@@ -40,7 +40,6 @@
   const SHARED_FIELDS = [
     ["callsign","vfrCallsign","taxiCallsign","depCallsign","appCallsign","landCallsign","parkCallsign"],
     ["aircraft","vfrAircraft"],
-    ["vfrDeparture","taxiAirport"],
     ["destination","vfrDestination"]
   ];
   const clean = (value) => String(value || "").trim().replace(/\s+/g," ");
@@ -100,8 +99,7 @@
     });
     SHARED_FIELDS.forEach((group) => {
       const source = group.find((id) => $(id).value) || group[0];
-      const legacyAirport = group.includes("vfrDeparture") ? clean(state.draft.airport) : "";
-      const value = $(source).value || legacyAirport;
+      const value = $(source).value;
       group.forEach((id) => { $(id).value = value; });
     });
   }
@@ -129,7 +127,6 @@
     const output = [];
     if (d.vfrCallsign) output.push(`${d.vfrCallsign},`);
     if (d.vfrAircraft) output.push(`aircraft ${d.vfrAircraft}.`);
-    if (d.vfrDeparture) output.push(`departing ${speakAlphanumeric(d.vfrDeparture)}.`);
     if (d.vfrDestination) output.push(`destination ${d.vfrDestination}.`);
     if (d.vfrRoute) output.push(`route / intentions ${d.vfrRoute}.`);
     if (d.vfrRunway) output.push(`runway ${speakRunway(d.vfrRunway)}.`);
