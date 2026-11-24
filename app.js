@@ -115,12 +115,14 @@
     let clearance = d.destination ? `cleared to ${d.destination}` : "";
     if (d.route) clearance += `${clearance ? " via " : "via "}${d.route}`;
     if (clearance) output.push(clearance);
+    if (d.altitude) output.push(`climb and maintain ${d.altitude}`);
     if (d.runway) output.push(`runway ${speakRunway(d.runway)} for departure`);
     if (d.frequency) output.push(`departure frequency ${speakFrequency(d.frequency)}`);
     if (/^[0-7]{4}$/.test(d.squawk)) output.push(`squawk ${d.squawk}`);
     const infoLetter = d.information.toUpperCase().charAt(0);
     if (ICAO[infoLetter]) output.push(`information ${ICAO[infoLetter]}`);
-    return output.length ? `${output.join(", ")}.` : "";
+    const cruiseInstruction = delayedClimb(d.cruiseDelay,d.cruisingAltitude);
+    return [output.length ? `${output.join(", ")}.` : "",cruiseInstruction].filter(Boolean).join(" ");
   }
   function generateVfr(d) {
     const output = [];
