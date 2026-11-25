@@ -1092,10 +1092,18 @@
   const mobileLayout = window.matchMedia("(max-width: 560px)");
   function placeAppearanceButton() {
     if (mobileLayout.matches) {
+      button.style.position = "fixed";
+      button.style.top = "12px";
+      button.style.right = "11px";
+      button.style.zIndex = "99998";
       document.body.appendChild(button);
       return;
     }
 
+    button.style.removeProperty("position");
+    button.style.removeProperty("top");
+    button.style.removeProperty("right");
+    button.style.removeProperty("z-index");
     if (header) header.appendChild(button);
     else document.body.appendChild(button);
   }

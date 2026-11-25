@@ -2068,18 +2068,6 @@ button:focus-visible { outline-color: var(--view-accent); }
 
   .top-actions { display: none; }
 
-  #a24AppearanceButton {
-
-    position: fixed;
-
-    top: 12px;
-
-    right: 11px;
-
-    z-index: 99998;
-
-  }
-
   .tabbar {
 
     height: calc(88px + env(safe-area-inset-bottom));
