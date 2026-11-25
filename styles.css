@@ -2060,6 +2060,8 @@ button:focus-visible { outline-color: var(--view-accent); }
 
   .topbar .brand-copy span { font-size: 7px; }
 
+  .topbar .brand #a24AppearanceButton { width: 34px; height: 34px; min-width: 34px; }
+
   .topbar .title { align-items: flex-end; text-align: right; }
 
   .topbar .title > span { display: none; }
