@@ -1,4 +1,3 @@
-
 (() => {
   "use strict";
 
@@ -621,6 +620,21 @@
     }
   }
 
+  // Remove only the unwanted buttons.
+  function removeUnwantedButtons() {
+    document.querySelectorAll("[data-generate]").forEach(button => button.remove());
+
+    document.querySelectorAll("button,[role='button']").forEach(button => {
+      const label = (button.textContent || "").trim().replace(/\s+/g," ").toUpperCase();
+
+      if (label === "STYLE" || label === "GENERATE READBACK") {
+        button.remove();
+      }
+    });
+  }
+
+  removeUnwantedButtons();
+
   document.querySelectorAll(".nav-item").forEach(button => {
     button.addEventListener("click",() => switchView(button.dataset.view));
   });
@@ -668,9 +682,6 @@
       toast(`${mode.toUpperCase()} fields cleared`);
     });
   });
-
-  // REMOVE GENERATE READBACK BUTTONS
-  document.querySelectorAll("[data-generate]").forEach(button => button.remove());
 
   $("newNoteButton")?.addEventListener("click",() => {
     state.activeNote = null;
