@@ -147,7 +147,6 @@
     if (d.taxiShort) output.push(`hold short of ${speakRunway(d.taxiShort)}.`);
     if (d.taxiCrossing) output.push(`crossing instructions: ${d.taxiCrossing}.`);
     if (d.taxiOther) output.push(`${d.taxiOther}.`);
-    if (d.taxiAirport) output.push(`Airport ${speakAlphanumeric(d.taxiAirport)}.`);
     return output.join(" ");
   }
   function generateDep(d) {
