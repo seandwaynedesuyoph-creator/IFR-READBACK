@@ -2066,25 +2066,19 @@ button:focus-visible { outline-color: var(--view-accent); }
 
   .topbar .title h1 { font-size: 13px; }
 
-  .top-actions {
+  .top-actions { display: none; }
 
-    position: absolute;
+  #a24AppearanceButton {
 
-    top: 50%;
+    position: fixed;
+
+    top: 12px;
 
     right: 11px;
 
-    display: flex;
-
-    transform: translateY(-50%);
+    z-index: 99998;
 
   }
-
-  .top-actions .system-status,
-
-  .top-actions time { display: none; }
-
-  .topbar { padding-right: 58px; }
 
   .tabbar {
 

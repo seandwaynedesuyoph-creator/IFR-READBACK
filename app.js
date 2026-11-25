@@ -1089,15 +1089,19 @@
     document.querySelector(".topbar") ||
     document.querySelector("header");
 
-  if (header) {
-    header.appendChild(button);
-  } else {
-    button.style.position = "fixed";
-    button.style.top = "15px";
-    button.style.right = "15px";
-    button.style.zIndex = "99998";
-    document.body.appendChild(button);
+  const mobileLayout = window.matchMedia("(max-width: 560px)");
+  function placeAppearanceButton() {
+    if (mobileLayout.matches) {
+      document.body.appendChild(button);
+      return;
+    }
+
+    if (header) header.appendChild(button);
+    else document.body.appendChild(button);
   }
+
+  placeAppearanceButton();
+  mobileLayout.addEventListener("change", placeAppearanceButton);
 
   function createPanel() {
     if (document.getElementById("a24AppearancePanel")) {
