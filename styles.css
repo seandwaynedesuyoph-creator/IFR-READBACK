@@ -2066,7 +2066,25 @@ button:focus-visible { outline-color: var(--view-accent); }
 
   .topbar .title h1 { font-size: 13px; }
 
-  .top-actions { display: none; }
+  .top-actions {
+
+    position: absolute;
+
+    top: 50%;
+
+    right: 11px;
+
+    display: flex;
+
+    transform: translateY(-50%);
+
+  }
+
+  .top-actions .system-status,
+
+  .top-actions time { display: none; }
+
+  .topbar { padding-right: 58px; }
 
   .tabbar {
 
